@@ -19,8 +19,25 @@ const storage = multer.diskStorage({
 // Init upload - .single because we're dealing with just a single file
 // name is simply whatever we set for the name attribute in our file input
 const upload = multer({
-  storage
+  storage,
+  limits: { fileSize: 1000000 },
+  fileFilter: function(req, file, cb) {
+    checkFileType(file, cb);
+  }
 }).single("myImage");
+
+function checkFileType(file, cb) {
+  // check extension and mimetype
+  const filetypes = /jpeg|jpg|png|gif/;
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    cb(new Error(`Only images are allowed - png, jpg, jpeg`));
+  }
+}
 
 const app = express();
 const port = 3000 || process.env.PATH;
@@ -37,6 +54,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/upload", (req, res) => {
+  // req.file has fieldname, originalname, destination, filename, etc.
   upload(req, res, err => {
     if (err) {
       res.render("index", { msg: err.message });
