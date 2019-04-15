@@ -59,8 +59,14 @@ app.post("/upload", (req, res) => {
     if (err) {
       res.render("index", { msg: err.message });
     } else {
-      console.log(req.file);
-      res.send("testttttt");
+      if (req.file == undefined) {
+        res.render("index", { msg: "Please select a file to upload" });
+      } else {
+        res.render("index", {
+          msg: "File uploaded!",
+          file: `uploads/${req.file.filename}`
+        });
+      }
     }
   });
 });
