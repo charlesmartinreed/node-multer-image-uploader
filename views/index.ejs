@@ -18,8 +18,7 @@
       <h1>File Upload</h1>
 			<%= typeof msg !== 'undefined' ? msg : '' %>
 
-      <!-- file input -->
-      <form action="/upload" method="POST">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
         <div class="file-field input-field">
           <div class="btn grey">
 						<span>File</span>
@@ -31,6 +30,7 @@
         <button type="submit" class="btn">Submit</button>
       </form>
     </div>
+
     <!-- jQuery -->
     <script
       src="https://code.jquery.com/jquery-3.4.0.min.js"
