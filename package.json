@@ -1,0 +1,26 @@
+{
+  "name": "node-multer-uploader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlesmartinreed/node-multer-image-uploader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlesmartinreed/node-multer-image-uploader/issues"
+  },
+  "homepage": "https://github.com/charlesmartinreed/node-multer-image-uploader#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "multer": "^1.4.1"
+  }
+}
